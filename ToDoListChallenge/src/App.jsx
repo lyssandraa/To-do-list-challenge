@@ -36,6 +36,17 @@ const App = () => {
     handleRemoveTask(index);
   };
 
+  const handleDeleteArchivedTask = (index) => {
+    const newArchivedTasks = archivedTasks.filter((_, i) => i !== index);
+    setArchivedTasks(newArchivedTasks);
+  };
+
+  const handleRestoreArchivedTask = (index) => {
+    const taskToRestore = archivedTasks[index];
+    setTasks([...tasks, taskToRestore]);
+    handleDeleteArchivedTask(index);
+  };
+
   return (
     <>
       <div className="container">
@@ -56,7 +67,13 @@ const App = () => {
         <h2>Archived Tasks</h2>
         <div>
           {archivedTasks.map((task, index) => (
-            <Tasks key={index} task={task} isArchived />
+            <Tasks
+              key={index}
+              task={task}
+              isArchived
+              deleteArchivedTask={() => handleDeleteArchivedTask(index)}
+              restoreArchivedTask={() => handleRestoreArchivedTask(index)}
+            />
           ))}
         </div>
       </div>
