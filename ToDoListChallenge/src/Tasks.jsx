@@ -7,6 +7,8 @@ const Tasks = ({
   editTask,
   archiveTask,
   isArchived,
+  deleteArchivedTask,
+  restoreArchivedTask,
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [newTask, setNewTask] = useState(task.task);
