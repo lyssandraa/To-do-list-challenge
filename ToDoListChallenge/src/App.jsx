@@ -5,6 +5,7 @@ import AddTask from "./AddTask";
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
+  const [archivedTasks, setArchivedTasks] = useState([]);
 
   const handleAddTask = (task) => {
     setTasks([...tasks, task]);
@@ -22,6 +23,19 @@ const App = () => {
     setTasks(newTasks);
   };
 
+  const handleEditTask = (index, newTask) => {
+    const newTasks = tasks.map((task, i) =>
+      i === index ? { ...task, task: newTask } : task
+    );
+    setTasks(newTasks);
+  };
+
+  const handleArchiveTask = (index) => {
+    const taskToArchive = tasks[index];
+    setArchivedTasks([...archivedTasks, taskToArchive]);
+    handleRemoveTask(index);
+  };
+
   return (
     <>
       <div className="container">
@@ -34,7 +48,15 @@ const App = () => {
               task={task}
               removeTask={() => handleRemoveTask(index)}
               toggleTask={() => handleToggleTask(index)}
+              editTask={(newTask) => handleEditTask(index, newTask)}
+              archiveTask={() => handleArchiveTask(index)}
             />
+          ))}
+        </div>
+        <h2>Archived Tasks</h2>
+        <div>
+          {archivedTasks.map((task, index) => (
+            <Tasks key={index} task={task} isArchived />
           ))}
         </div>
       </div>
