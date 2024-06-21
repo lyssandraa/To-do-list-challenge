@@ -1,51 +1,44 @@
 import { useState } from "react";
 import "./App.css";
-import tasks from "./tasks";
-import addTask from "./addTask";
+import Tasks from "./Tasks";
+import AddTask from "./AddTask";
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
 
   const handleAddTask = (task) => {
-    let newTasksArr = [...tasks];
-    newTasksArr.push(task);
-    setTasks(newTasksArr);
+    setTasks([...tasks, task]);
   };
 
   const handleRemoveTask = (index) => {
-    let newTasksArr = [...tasks];
-    newTasksArr.splice(index, 1);
-    setTasks(newTasksArr);
+    const newTasks = tasks.filter((_, i) => i !== index);
+    setTasks(newTasks);
+  };
+
+  const handleToggleTask = (index) => {
+    const newTasks = tasks.map((task, i) =>
+      i === index ? { ...task, completed: !task.completed } : task
+    );
+    setTasks(newTasks);
   };
 
   return (
     <>
       <div>
         <h1>My To Do List</h1>
-        {tasks.map((myTasks, index) => {
-          return (
+        <AddTask handleAddTask={handleAddTask} />
+        <div>
+          {tasks.map((task, index) => (
             <Tasks
-              key={index}
-              myTasksData={myTasks}
+              ket={index}
+              task={task}
               removeTask={() => handleRemoveTask(index)}
+              toggleTask={() => handleToggleTask(index)}
             />
-          );
-        })}
-      </div>
-
-      <div>
-        <h2>To Do:</h2>
+          ))}
+        </div>
       </div>
     </>
-  );
-};
-
-const Tasks = ({ myTasksData, removeTask }) => {
-  return (
-    <div>
-      <p>{myTasksData.task}</p>
-      <button onClick={removeTask}>Delete</button>
-    </div>
   );
 };
 

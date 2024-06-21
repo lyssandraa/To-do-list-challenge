@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const addTask = ({ handleAddTask }) => {
+const AddTask = ({ handleAddTask }) => {
   const [task, setTask] = useState("");
 
   const onSubmit = (event) => {
@@ -24,4 +24,4 @@ const addTask = ({ handleAddTask }) => {
   );
 };
 
-export default addTask;
+export default AddTask;
