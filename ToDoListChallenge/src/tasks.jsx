@@ -12,4 +12,4 @@ const Tasks = ({ task, removeTask, toggleTask }) => {
   );
 };
 
-export default Tasks;
+export default tasks;
