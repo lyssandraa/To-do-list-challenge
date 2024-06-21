@@ -1,18 +1,20 @@
 import { useState } from "react";
 
+// tasks component to display each task and handle task-specific actions //
 const Tasks = ({
-  task,
-  removeTask,
-  toggleTask,
-  editTask,
-  archiveTask,
-  isArchived,
-  deleteArchivedTask,
-  restoreArchivedTask,
+  task, // the task object containing the task details //
+  removeTask, //function to remove task from the main list //
+  toggleTask, // toggle the completion status of the task //
+  editTask, // edit the task //
+  archiveTask, // archive the task //
+  isArchived, // boolean indicating if the task is archived //
+  deleteArchivedTask, // delete the task from the archived list //
+  restoreArchivedTask, // restore the task to the main list //
 }) => {
-  const [isEditing, setIsEditing] = useState(false);
-  const [newTask, setNewTask] = useState(task.task);
+  const [isEditing, setIsEditing] = useState(false); // handles the editing mode //
+  const [newTask, setNewTask] = useState(task.task); // handles the new task text during editing //
 
+  // to save edited task //
   const handleEdit = () => {
     editTask(newTask);
     setIsEditing(false);
