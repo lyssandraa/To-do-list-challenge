@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import Tasks from "./Tasks";
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
@@ -46,7 +47,5 @@ const Tasks = ({ myTasksData, removeTask }) => {
     </div>
   );
 };
-
-const TaskCard = (props) => {};
 
 export default App;
