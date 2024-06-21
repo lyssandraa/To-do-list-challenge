@@ -24,7 +24,7 @@ const App = () => {
 
   return (
     <>
-      <div>
+      <div className="container">
         <h1>My To Do List</h1>
         <AddTask handleAddTask={handleAddTask} />
         <div>
