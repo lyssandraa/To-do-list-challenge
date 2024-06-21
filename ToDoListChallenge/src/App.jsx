@@ -47,4 +47,6 @@ const Tasks = ({ myTasksData, removeTask }) => {
   );
 };
 
+const TaskCard = (props) => {};
+
 export default App;
